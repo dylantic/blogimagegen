@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"image/color"
+	"image/jpeg"
+	"os"
 
 	"github.com/fogleman/gg"
 )
@@ -16,6 +18,8 @@ func main() {
 	fontface := flag.String("font", "./fonts/OpenSans_SemiCondensed-SemiBold.ttf", "Set the fontface to use")
 	fontsize := flag.Int("fontsize", 50, "Set the font size to use")
 	output := flag.String("output", "output.png", "Set the filename for the output file")
+	format := flag.String("format", "png", "Set the output format for the image (png/jpg)")
+	quality := flag.Int("quality", 90, "Set quality option for format if it's supported (jpeg)")
 
 	flag.Parse()
 
@@ -50,8 +54,23 @@ func main() {
 	image.SetColor(textColor)
 	image.DrawStringWrapped(*title, x, y, 0, 0, maxWidth, 1.5, gg.AlignLeft)
 
-	err := image.SavePNG(*output)
-	if err != nil {
-		fmt.Println(err)
+	if *format == "png" {
+		err := image.SavePNG(*output)
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else if *format == "jpeg" || *format == "jpg" {
+		img := image.Image()
+		outfile, err := os.Create(*output)
+		if err != nil {
+			fmt.Println(err)
+		}
+		jpegopts := jpeg.Options{
+			Quality: *quality,
+		}
+		jpeg.Encode(outfile, img, &jpegopts)
+	} else {
+		fmt.Println("Unsupported image format. Use one of: jpeg, png")
 	}
+
 }
