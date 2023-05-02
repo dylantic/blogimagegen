@@ -46,8 +46,8 @@ func main() {
 	}
 
 	textColor := color.RGBA{255, 255, 255, 255}
-	textRightMargin := 100.0
-	textTopMargin := 100.0
+	textRightMargin := float64(*width / 10.0)
+	textTopMargin := float64(*width / 10.0)
 	x = textRightMargin
 	y = textTopMargin
 	maxWidth := float64(image.Width()) - textRightMargin - textRightMargin

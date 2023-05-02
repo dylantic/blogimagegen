@@ -1,6 +1,7 @@
 ## About
 This program generates a header image for my blog at [https://dylans.blog](http://dylans.blog).
 
+![An example header](https://github.com/dylantic/blogimagegen/blob/main/header.jpeg?raw=true)
 
 ## How to use it
 Either run it directly with `go run main.go` or `go build` it and run the binary.
