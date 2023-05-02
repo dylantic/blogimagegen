@@ -8,6 +8,8 @@ Either run it directly with `go run main.go` or `go build` it and run the binary
 
 In either case use `--help` to get a full list of supported options.
 
+Realistically you can use different typefaces with the program, but I've found that some typefaces do not survive Go's image generation very well. Open Sans seems to cope without issue, but Montserrat for example had holes in the glyphs or overlapping lines. 
+
 ## Credit
 Included image neoncity.jpg was created by [Yiran Ding on Unsplash](https://unsplash.com/photos/JQRyYCC2OIM)
 
